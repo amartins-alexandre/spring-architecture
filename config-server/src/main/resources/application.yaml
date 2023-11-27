@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      label: {profile}
+      server:
+        git:
+          uri: ${URI}
+          search-paths:
+            - ms-one
+            - ms-two
+#          username: ${USERNAME}
+#          password: ${PASSWORD}
+#          passphrase: ${PK_SSH}
+#          private-key:
