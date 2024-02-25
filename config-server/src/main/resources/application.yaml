@@ -10,5 +10,5 @@ spring:
         git:
           uri: ${URI:https://github.com/amartins-alexandre/config-repo.git}
           search-paths:
-          - ms-one
-          - ms-two
+          - gateway
+          - student-service
