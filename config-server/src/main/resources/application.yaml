@@ -6,7 +6,6 @@ spring:
     name: config-server
   cloud:
     config:
-      label: ${APP_ENV:staging}
       server:
         git:
           uri: ${URI:https://github.com/amartins-alexandre/config-repo.git}
