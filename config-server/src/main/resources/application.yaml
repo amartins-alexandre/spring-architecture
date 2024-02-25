@@ -1,19 +1,15 @@
 server:
-  port: 8888
+  port: ${PORT:8888}
 
 spring:
   application:
     name: config-server
   cloud:
     config:
-      label: {profile}
+      label: ${APP_ENV:staging}
       server:
         git:
-          uri: ${URI}
+          uri: ${URI:https://github.com/amartins-alexandre/config-repo.git}
           search-paths:
-            - ms-one
-            - ms-two
-#          username: ${USERNAME}
-#          password: ${PASSWORD}
-#          passphrase: ${PK_SSH}
-#          private-key:
+          - ms-one
+          - ms-two
