@@ -1,7 +1,7 @@
-package br.com.amartins.springarchtecture.student.useCase
+package br.com.amartins.springarchtecture.student.usecase
 
 import br.com.amartins.springarchtecture.student.domain.Student
 
 interface CreateStudentUseCase {
-    fun execute(student: Student): Student
+    fun execute(student: Student): Boolean
 }

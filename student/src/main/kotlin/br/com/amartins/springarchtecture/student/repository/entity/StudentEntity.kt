@@ -9,7 +9,8 @@ import jakarta.persistence.Id
 class StudentEntity(
     @Id val id: String?,
     @Column private val name: String,
-    @Column(length = 11) private val document: String
+    @Column(length = 11) private val document: String,
+    @Column private val active: Boolean = true
 ) {
     fun toDomain(): Student =
         Student(

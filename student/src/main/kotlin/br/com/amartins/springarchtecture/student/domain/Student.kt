@@ -7,7 +7,8 @@ import java.util.UUID
 data class Student(
     val id: String?,
     val name: String,
-    val document: String
+    val document: String,
+    val active: Boolean = true
 ) {
     private fun newStudent(maxLen: Int = 21): String =
         UUID.randomUUID()
@@ -19,7 +20,8 @@ data class Student(
         StudentEntity(
         id = this.id ?: this.newStudent(),
         name = this.name,
-        document = this.document
+        document = this.document,
+        active = this.active
     )
 
     fun toResponse(): StudentResponse =
