@@ -5,13 +5,12 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect
 
 @JsonAutoDetect
 data class StudentRequest(
-    val name: String,
-    val document: String
+    val name: String
 ) {
     fun toDomain(): Student =
         Student(
         id = null,
         name = this.name,
-        document = this.document
+        document = ""
     )
 }

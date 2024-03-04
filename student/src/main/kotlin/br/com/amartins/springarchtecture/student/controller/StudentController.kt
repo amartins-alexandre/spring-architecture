@@ -39,7 +39,6 @@ class StudentController(
     }
 
     @PutMapping("{id}")
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     fun updateStudentData(
         @PathVariable id: String,
         @RequestBody studentReq: StudentRequest,
