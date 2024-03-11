@@ -2,6 +2,7 @@ package br.com.amartins.springarchitecture.student.adapter.inbound.controller
 
 import br.com.amartins.springarchitecture.student.application.usecase.*
 import br.com.amartins.springarchitecture.student.adapter.inbound.controller.request.StudentRequest
+import br.com.amartins.springarchitecture.student.adapter.inbound.controller.response.StudentMessageResponse
 import br.com.amartins.springarchitecture.student.adapter.inbound.controller.response.StudentResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -41,7 +42,7 @@ class StudentController(
     }
 
     @PutMapping("{externalId}")
-    @ResponseStatus(value = HttpStatus.CREATED)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     fun updateStudentData(
         @PathVariable externalId: String,
         @RequestBody studentRequest: StudentRequest,
@@ -55,8 +56,8 @@ class StudentController(
     @DeleteMapping("{externalId}")
     fun logicRemoveStudent(
         @PathVariable externalId: String,
-    ): ResponseEntity<String> =
-        ResponseEntity.ok(
-            inactivateStudentUseCase.execute(externalId = externalId)
-        )
+    ): ResponseEntity<StudentMessageResponse> {
+        val message = inactivateStudentUseCase.execute(externalId = externalId)
+        return ResponseEntity.ok(StudentMessageResponse(message))
+    }
 }

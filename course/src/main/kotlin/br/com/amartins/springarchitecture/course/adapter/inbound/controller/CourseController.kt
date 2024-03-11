@@ -2,6 +2,7 @@ package br.com.amartins.springarchitecture.course.adapter.inbound.controller
 
 import br.com.amartins.springarchitecture.course.application.useCase.*
 import br.com.amartins.springarchitecture.course.adapter.inbound.controller.request.CourseRequest
+import br.com.amartins.springarchitecture.course.adapter.inbound.controller.response.CourseMessageResponse
 import br.com.amartins.springarchitecture.course.adapter.inbound.controller.response.CourseResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -21,7 +22,7 @@ class CourseController(
     private val findOneCourseUseCase: FindOneCourseUseCase,
     private val findAllCourseUseCase: FindAllCourseUseCase,
     private val createCourseUseCase: CreateCourseUseCase,
-    private val updateCourseUseCase: br.com.amartins.springarchitecture.course.application.useCase.UpdateCourseUseCase,
+    private val updateCourseUseCase: UpdateCourseUseCase,
     private val inactivateCourseUseCase: InactivateCourseUseCase,
 ) {
     @GetMapping("{code}")
@@ -61,10 +62,10 @@ class CourseController(
     }
 
     @DeleteMapping("{external_id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun inactivateCourse(
         @PathVariable("external_id") externalId: String,
-    ) {
-        inactivateCourseUseCase.execute(externalId)
+    ): ResponseEntity<CourseMessageResponse> {
+        val message = inactivateCourseUseCase.execute(externalId)
+        return ResponseEntity.ok(CourseMessageResponse(message))
     }
 }

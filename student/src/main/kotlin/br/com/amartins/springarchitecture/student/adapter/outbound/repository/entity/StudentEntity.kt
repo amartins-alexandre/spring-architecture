@@ -27,7 +27,8 @@ class StudentEntity(
             id = this.id,
             externalId = this.externalId,
             name = this.name,
-            document = this.document
+            document = this.document,
+            active = this.active
         )
 
     companion object {
