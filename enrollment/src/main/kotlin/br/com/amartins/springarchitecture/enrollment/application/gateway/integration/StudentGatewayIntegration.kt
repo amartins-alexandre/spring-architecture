@@ -3,5 +3,5 @@ package br.com.amartins.springarchitecture.enrollment.application.gateway.integr
 import br.com.amartins.springarchitecture.enrollment.application.domain.Student
 
 interface StudentGatewayIntegration {
-    fun getById(studentId: String): Student
+    fun getByExternalId(studentExternalId: String): Student
 }

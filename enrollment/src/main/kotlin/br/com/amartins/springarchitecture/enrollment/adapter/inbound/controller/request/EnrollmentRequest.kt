@@ -3,12 +3,12 @@ package br.com.amartins.springarchitecture.enrollment.adapter.inbound.controller
 import br.com.amartins.springarchitecture.enrollment.application.domain.Enrollment
 
 data class EnrollmentRequest(
-    val studentId: String,
-    val courseCode: String,
+    val studentExternalId: String,
+    val courseExternalId: String,
 ) {
     fun toDomain(): Enrollment =
         Enrollment(
-            studentId = this.studentId,
-            courseCode = this.courseCode,
+            studentExternalId = this.studentExternalId,
+            courseExternalId = this.courseExternalId,
         )
 }

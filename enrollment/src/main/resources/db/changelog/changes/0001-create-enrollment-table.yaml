@@ -1,11 +1,11 @@
 databaseChangeLog:
   - changeSet:
-      id: 0001-create-table-course
+      id: 0001-create-enrollment-table
       author: alexandre.martins
       changes:
         - createTable:
-            schemaName: course
-            tableName: course
+            schemaName: enrollment
+            tableName: enrollment
             columns:
               - column:
                   name: id
@@ -14,21 +14,22 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: name
-                  type: varchar(255)
-                  constraints:
-                    unique: true
-                    nullable: false
-              - column:
                   name: external_id
                   type: varchar(21)
                   constraints:
-                    nullable: false
                     unique: true
+                    nullable: false
               - column:
-                  name: type
-                  type: varchar(150)
+                  name: student_external_id
+                  type: varchar(21)
                   constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: course_external_id
+                  type: varchar(21)
+                  constraints:
+                    unique: true
                     nullable: false
               - column:
                   name: active

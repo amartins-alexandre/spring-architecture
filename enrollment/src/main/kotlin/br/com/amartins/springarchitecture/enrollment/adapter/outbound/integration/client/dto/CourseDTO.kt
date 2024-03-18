@@ -1,18 +1,17 @@
 package br.com.amartins.springarchitecture.enrollment.adapter.outbound.integration.client.dto
 
 import br.com.amartins.springarchitecture.enrollment.application.domain.Course
+import com.fasterxml.jackson.annotation.JsonProperty
 
 data class CourseDTO(
-    val id: String?,
+    @JsonProperty("external_id") val externalId: String,
     val name: String,
-    val code: String,
     val type: String,
 ) {
     fun toDomain() =
         Course(
-            id = this.id,
+            externalId = this.externalId,
             name = this.name,
-            code = this.code,
             type = this.type,
         )
 }

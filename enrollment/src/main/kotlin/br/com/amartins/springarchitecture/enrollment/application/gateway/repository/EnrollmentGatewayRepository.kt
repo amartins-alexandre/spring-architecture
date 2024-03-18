@@ -3,7 +3,7 @@ package br.com.amartins.springarchitecture.enrollment.application.gateway.reposi
 import br.com.amartins.springarchitecture.enrollment.application.domain.Enrollment
 
 interface EnrollmentGatewayRepository {
-    fun findOne(id: String): Enrollment
+    fun findOneByExternalId(externalId: String): Enrollment
 
     fun findAll(): List<Enrollment>
 

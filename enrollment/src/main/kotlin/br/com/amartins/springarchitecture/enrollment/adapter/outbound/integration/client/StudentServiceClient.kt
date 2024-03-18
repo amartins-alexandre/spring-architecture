@@ -5,10 +5,10 @@ import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 
-@FeignClient("\${service.clients.student}")
+@FeignClient(name = "student-service", url = "\${service.clients.student}")
 interface StudentServiceClient {
-    @GetMapping("/student/{id}")
-    fun getStudentById(
-        @PathVariable(value = "id") id: String
+    @GetMapping("/student/{externalId}")
+    fun getStudentByExternalId(
+        @PathVariable(value = "externalId") externalId: String
     ): StudentDTO
 }

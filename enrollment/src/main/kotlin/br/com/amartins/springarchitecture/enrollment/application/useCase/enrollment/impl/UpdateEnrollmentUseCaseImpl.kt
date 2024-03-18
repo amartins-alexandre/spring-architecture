@@ -10,6 +10,7 @@ class UpdateEnrollmentUseCaseImpl(
     private val gatewayRepository: EnrollmentGatewayRepository
 ) : UpdateEnrollmentUseCase {
     override fun execute(enrollment: Enrollment) {
-        gatewayRepository.upsertCourse(enrollment)
+        val enrollmentFound = gatewayRepository.findOneByExternalId(enrollment.externalId!!)
+        gatewayRepository.upsertCourse(enrollment.copy(id = enrollmentFound.id))
     }
 }

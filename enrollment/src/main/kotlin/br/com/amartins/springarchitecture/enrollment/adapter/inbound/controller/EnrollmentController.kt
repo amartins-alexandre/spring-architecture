@@ -24,44 +24,42 @@ class EnrollmentController(
     private val updateEnrollmentUseCase: UpdateEnrollmentUseCase,
     private val inactivateEnrollmentUseCase: InactivateEnrollmentUseCase,
 ) {
-    @GetMapping("{id}")
+    @GetMapping("{externalId}")
     fun getOne(
-        @PathVariable id: String,
+        @PathVariable externalId: String,
     ): ResponseEntity<EnrollmentResponse> {
-        val enrollment = findOneEnrollmentUseCase.execute(id)
-        return ResponseEntity.ok(EnrollmentResponse.fromDomain(enrollment))
+        val enrollmentMap = findOneEnrollmentUseCase.execute(externalId)
+        return ResponseEntity.ok(EnrollmentResponse.fromAnyMap(enrollmentMap))
     }
 
     @GetMapping
     fun getAll(): ResponseEntity<List<EnrollmentResponse>> {
         val enrollments = findAllEnrollmentUseCase.execute()
-        return ResponseEntity.ok(
-            enrollments.map { EnrollmentResponse.fromDomain(it) },
-        )
+        return ResponseEntity.ok(EnrollmentResponse.fromListAnyMap(enrollments))
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun newCourse(
+    fun newEnrollment(
         @RequestBody enrollmentRequest: EnrollmentRequest,
     ) {
         createEnrollmentUseCase.execute(enrollmentRequest.toDomain())
     }
 
-    @PutMapping("{id}")
+    @PutMapping("{externalId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun updateCourse(
-        @PathVariable id: String,
+        @PathVariable externalId: String,
         @RequestBody enrollmentRequest: EnrollmentRequest,
     ) {
-        updateEnrollmentUseCase.execute(enrollmentRequest.toDomain().copy(id = id))
+        updateEnrollmentUseCase.execute(enrollmentRequest.toDomain().copy(externalId = externalId))
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("{externalId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun inactivateCourse(
-        @PathVariable id: String,
+        @PathVariable externalId: String,
     ) {
-        inactivateEnrollmentUseCase.execute(id)
+        inactivateEnrollmentUseCase.execute(externalId)
     }
 }

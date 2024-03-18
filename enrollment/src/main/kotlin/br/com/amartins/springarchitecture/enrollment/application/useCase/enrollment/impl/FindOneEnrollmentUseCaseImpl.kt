@@ -12,10 +12,10 @@ class FindOneEnrollmentUseCaseImpl(
     private val studentIntegration: StudentGatewayIntegration,
     private val courseIntegration: CourseGatewayIntegration
 ) : FindOneEnrollmentUseCase {
-    override fun execute(id: String): Map<String, Any> {
-        val enrollment = gatewayRepository.findOne(id)
-        val student = studentIntegration.getById(enrollment.studentId)
-        val course = courseIntegration.getById(enrollment.courseId)
+    override fun execute(externalId: String): Map<String, Any> {
+        val enrollment = gatewayRepository.findOneByExternalId(externalId)
+        val student = studentIntegration.getByExternalId(enrollment.studentExternalId)
+        val course = courseIntegration.getByExternalId(enrollment.courseExternalId)
         return mutableMapOf(
             "enrollment" to enrollment,
             "student" to student,

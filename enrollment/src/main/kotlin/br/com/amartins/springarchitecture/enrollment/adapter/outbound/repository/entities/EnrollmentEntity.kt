@@ -9,17 +9,17 @@ import java.util.*
 @Entity(name = "enrollment")
 data class EnrollmentEntity(
     @Id val id: String?,
-    @Column val code: String,
-    @Column val studentId: String,
-    @Column val courseCode: String,
+    @Column(name = "external_id") val externalId: String,
+    @Column(name = "student_external_id") val studentExternalId: String,
+    @Column(name = "course_external_id") val courseExternalId: String,
     @Column val active: Boolean,
 ) {
     fun toDomain(): Enrollment =
         Enrollment(
             id = this.id,
-            code = this.code,
-            studentId = this.studentId,
-            courseCode = this.courseCode,
+            externalId = this.externalId,
+            studentExternalId = this.studentExternalId,
+            courseExternalId = this.courseExternalId,
             active = this.active,
         )
 
@@ -27,9 +27,9 @@ data class EnrollmentEntity(
         fun fromDomain(enrollment: Enrollment) =
             EnrollmentEntity(
                 id = enrollment.id ?: this.newEnrollment(),
-                code = enrollment.code!!,
-                studentId = enrollment.studentId,
-                courseCode = enrollment.courseCode,
+                externalId = enrollment.externalId ?: this.newEnrollment(),
+                studentExternalId = enrollment.studentExternalId,
+                courseExternalId = enrollment.courseExternalId,
                 active = enrollment.active,
             )
 

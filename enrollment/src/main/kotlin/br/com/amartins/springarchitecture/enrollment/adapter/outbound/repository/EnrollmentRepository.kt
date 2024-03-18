@@ -7,7 +7,7 @@ import java.util.*
 
 @Repository
 interface EnrollmentRepository : JpaRepository<EnrollmentEntity, String> {
-    fun findByIdAndActiveIsTrue(id: String): Optional<EnrollmentEntity>
+    fun findByExternalIdAndActiveIsTrue(externalId: String): Optional<EnrollmentEntity>
 
     fun findAllByActiveIsTrue(): Optional<List<EnrollmentEntity>>
 }

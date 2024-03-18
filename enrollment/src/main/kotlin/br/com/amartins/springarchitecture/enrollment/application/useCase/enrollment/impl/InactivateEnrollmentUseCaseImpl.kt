@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service
 class InactivateEnrollmentUseCaseImpl(
     private val gatewayRepository: EnrollmentGatewayRepository
 ) : InactivateEnrollmentUseCase {
-    override fun execute(id: String) {
-        val course = gatewayRepository.findOne(id).copy(active = false)
-        gatewayRepository.upsertCourse(course)
+    override fun execute(externalId: String) {
+        val enrollment =
+            gatewayRepository.findOneByExternalId(externalId)
+            .copy(active = false)
+        gatewayRepository.upsertCourse(enrollment)
     }
 }

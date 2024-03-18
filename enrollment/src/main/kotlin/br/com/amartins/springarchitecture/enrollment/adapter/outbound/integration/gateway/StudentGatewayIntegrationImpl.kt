@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 class StudentGatewayIntegrationImpl(
     private val studentServiceClient: StudentServiceClient
 ) : StudentGatewayIntegration {
-    override fun getById(studentId: String): Student {
-        return studentServiceClient.getStudentById(studentId).toDomain()
+    override fun getByExternalId(studentExternalId: String): Student {
+        return studentServiceClient.getStudentByExternalId(studentExternalId).toDomain()
     }
 }

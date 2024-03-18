@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component
 class EnrollmentGatewayRepositoryImpl(
     private val repository: EnrollmentRepository
 ) : EnrollmentGatewayRepository {
-    override fun findOne(id: String): Enrollment {
-        val entityOptional = repository.findByIdAndActiveIsTrue(id)
+    override fun findOneByExternalId(externalId: String): Enrollment {
+        val entityOptional = repository.findByExternalIdAndActiveIsTrue(externalId)
         if (!entityOptional.isPresent) {
             throw DataNotFoundException(Message.COULD_NOT_FIND_COURSE)
         }
