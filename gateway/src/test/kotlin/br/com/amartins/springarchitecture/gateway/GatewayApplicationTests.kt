@@ -1,13 +1,11 @@
-package br.com.amartins.springarchtecture.gateway
+package br.com.amartins.springarchitecture.gateway
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
 class GatewayApplicationTests {
-
     @Test
     fun contextLoads() {
     }
-
 }
