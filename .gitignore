@@ -1,0 +1,14 @@
+# Arquivos gerados pelo Spring Framework
+/target/
+
+# Arquivos gerados pelo IntelliJ
+.idea/
+
+# Arquivos gerados pelo VSCode
+.vscode/
+
+# Arquivos gerados pelo Kotlin
+*.class
+*.jar
+*.war
+*.ear

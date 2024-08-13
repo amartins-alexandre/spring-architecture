@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: course-service
+  cloud:
+    config:
+      name: ${spring.application.name}
+      label: ${spring.profiles.active}
+      uri: ${CONFIG_SERVER_URI:http://localhost:8888}

@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: ms-one
-  profiles:
-    active: staging
-  cloud:
-    config:
-      label: ${APP_ENV:staging}
-      uri: http://localhost:8888

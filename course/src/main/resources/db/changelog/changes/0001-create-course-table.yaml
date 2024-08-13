@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0001-create-course-table
+      author: alexandre.martins
+      changes:
+        - createTable:
+            schemaName: course
+            tableName: course
+            columns:
+              - column:
+                  name: id
+                  type: varchar(21)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: external_id
+                  type: varchar(21)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: type
+                  type: varchar(150)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: active
+                  type: boolean
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false

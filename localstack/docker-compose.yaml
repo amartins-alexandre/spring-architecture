@@ -1,0 +1,17 @@
+version: "3"
+
+networks:
+  sb-arch:
+    driver: bridge
+
+services:
+  mariadb-dev:
+    image: mariadb:10
+    environment:
+      - MARIADB_ROOT_PASSWORD=123124
+      - MARIADB_USER=admin
+      - MARIADB_PASSWORD=123124
+    networks:
+      - sb-arch
+    ports:
+      - 3306:3306
